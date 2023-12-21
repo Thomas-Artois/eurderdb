@@ -21,12 +21,11 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
-    private final AdminRepository adminRepository;
 
-    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper, AdminRepository adminRepository) {
+
+    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper) {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
-        this.adminRepository = adminRepository;
     }
 
     public CustomerDto saveCustomer(CreateCustomerDto createCustomerDto) {

@@ -26,6 +26,7 @@ public class CustomerController {
     }
 
     @GetMapping(produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
     public List<CustomerDto> getAllCustomers(@RequestHeader String username, @RequestHeader String password) {
         adminService.findAdminByUsername(username);
         adminService.checkIfAdminPasswordIsCorrect(username, password);
@@ -34,6 +35,7 @@ public class CustomerController {
     }
 
     @GetMapping(path = "{id}", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
     public CustomerDto getCustomerById(@RequestHeader String username, @RequestHeader String password, @PathVariable Long id) {
         adminService.findAdminByUsername(username);
         adminService.checkIfAdminPasswordIsCorrect(username, password);
