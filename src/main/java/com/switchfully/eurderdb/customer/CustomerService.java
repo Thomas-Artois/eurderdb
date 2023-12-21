@@ -2,10 +2,12 @@ package com.switchfully.eurderdb.customer;
 
 import com.switchfully.eurderdb.admin.AdminRepository;
 import com.switchfully.eurderdb.admin.domain.Admin;
+import com.switchfully.eurderdb.customer.domain.Customer;
 import com.switchfully.eurderdb.customer.dto.CreateCustomerDto;
 import com.switchfully.eurderdb.customer.dto.CustomerDto;
 import com.switchfully.eurderdb.exceptions.AdminNotFoundException;
 import com.switchfully.eurderdb.exceptions.AdminPasswordIncorrectException;
+import com.switchfully.eurderdb.exceptions.CustomerDoesntExistException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,4 +40,23 @@ public class CustomerService {
         return customerRepository.findAll().stream().map(customerMapper::mapCustomerToCustomerDto).collect(Collectors.toList());
     }
 
+    public CustomerDto findCustomberById(Long id) throws CustomerDoesntExistException{
+        Optional<Customer> customerOptional = customerRepository.findById(id);
+
+        if (customerOptional.isPresent()) {
+            return customerMapper.mapCustomerToCustomerDto(customerOptional.get());
+        } else {
+            // Throw an exception or handle the case where customer is not found
+            throw new CustomerDoesntExistException();
+        }
+    }
+
+
+//    private void checkIfCustomerExists(Long id) throws CustomerDoesntExistException {
+//        Optional<Customer> customerToCheck = customerRepository.findById(id);
+//
+//        if (customerToCheck.isEmpty()) {
+//            throw new CustomerDoesntExistException();
+//        }
+//    }
 }

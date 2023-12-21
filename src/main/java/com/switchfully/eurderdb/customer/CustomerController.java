@@ -26,11 +26,19 @@ public class CustomerController {
     }
 
     @GetMapping(produces = "application/json")
-    public List<CustomerDto> getAllCustomers(@RequestParam String username, @RequestParam String password) {
+    public List<CustomerDto> getAllCustomers(@RequestHeader String username, @RequestHeader String password) {
         adminService.findAdminByUsername(username);
         adminService.checkIfAdminPasswordIsCorrect(username, password);
 
         return customerService.findAllCustomers();
+    }
+
+    @GetMapping(path = "{id}", produces = "application/json")
+    public CustomerDto getCustomerById(@RequestHeader String username, @RequestHeader String password, @PathVariable Long id) {
+        adminService.findAdminByUsername(username);
+        adminService.checkIfAdminPasswordIsCorrect(username, password);
+
+        return customerService.findCustomberById(id);
     }
 
 }

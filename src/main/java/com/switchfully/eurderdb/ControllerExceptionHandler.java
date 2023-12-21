@@ -3,6 +3,7 @@ package com.switchfully.eurderdb;
 import com.switchfully.eurderdb.admin.domain.Admin;
 import com.switchfully.eurderdb.exceptions.AdminNotFoundException;
 import com.switchfully.eurderdb.exceptions.AdminPasswordIncorrectException;
+import com.switchfully.eurderdb.exceptions.CustomerDoesntExistException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,6 +21,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(AdminNotFoundException.class)
     private void adminNotFoundException(AdminNotFoundException e, HttpServletResponse response) throws IOException {
+        response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
+    }
+
+    @ExceptionHandler(CustomerDoesntExistException.class)
+    private void customerDoesntExistException(CustomerDoesntExistException e, HttpServletResponse response) throws IOException {
         response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
     }
 
