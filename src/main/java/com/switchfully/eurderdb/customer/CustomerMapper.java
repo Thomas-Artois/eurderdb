@@ -2,6 +2,7 @@ package com.switchfully.eurderdb.customer;
 
 import com.switchfully.eurderdb.customer.domain.Customer;
 import com.switchfully.eurderdb.customer.dto.CreateCustomerDto;
+import com.switchfully.eurderdb.customer.dto.CustomerDto;
 import org.springframework.stereotype.Component;
 
 @Component

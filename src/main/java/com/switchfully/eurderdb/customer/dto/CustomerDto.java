@@ -1,4 +1,4 @@
-package com.switchfully.eurderdb.customer;
+package com.switchfully.eurderdb.customer.dto;
 
 import com.switchfully.eurderdb.customer.domain.Address;
 import jakarta.persistence.*;
