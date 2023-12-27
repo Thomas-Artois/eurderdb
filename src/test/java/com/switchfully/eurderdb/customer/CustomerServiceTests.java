@@ -32,7 +32,8 @@ public class CustomerServiceTests {
         //GIVEN
         CreateCustomerDto createCustomerDto =
                 new CreateCustomerDto("Igor", "De Verschrikkelijke", "igor@gmail.com", "0111223344",
-                        new Address("IgorStraat", "21B", "Charleroi"));
+                        new Address("IgorStraat", "21B", "Charleroi"),
+                        "testingPassword");
 
         //WHEN
         customerService.saveCustomer(createCustomerDto);

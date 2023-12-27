@@ -8,6 +8,7 @@ import com.switchfully.eurderdb.customer.dto.CustomerDto;
 import com.switchfully.eurderdb.exceptions.AdminNotFoundException;
 import com.switchfully.eurderdb.exceptions.AdminPasswordIncorrectException;
 import com.switchfully.eurderdb.exceptions.CustomerDoesntExistException;
+import com.switchfully.eurderdb.exceptions.CustomerPasswordIncorrectException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,17 +46,24 @@ public class CustomerService {
         if (customerOptional.isPresent()) {
             return customerMapper.mapCustomerToCustomerDto(customerOptional.get());
         } else {
-            // Throw an exception or handle the case where customer is not found
+            throw new CustomerDoesntExistException();
+        }
+    }
+
+    public CustomerDto findCustomerByEmail(String email) throws CustomerDoesntExistException {
+        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(email);
+
+        if (customerOptional.isPresent()) {
+            return customerMapper.mapCustomerToCustomerDto(customerOptional.get());
+        } else {
             throw new CustomerDoesntExistException();
         }
     }
 
 
-//    private void checkIfCustomerExists(Long id) throws CustomerDoesntExistException {
-//        Optional<Customer> customerToCheck = customerRepository.findById(id);
-//
-//        if (customerToCheck.isEmpty()) {
-//            throw new CustomerDoesntExistException();
-//        }
-//    }
+    public void checkIfPasswordIsCorrect(CustomerDto customerDto, String password) throws CustomerPasswordIncorrectException{
+        if (!(customerDto.getPassword().equals(password))) {
+            throw new CustomerPasswordIncorrectException();
+        }
+    }
 }

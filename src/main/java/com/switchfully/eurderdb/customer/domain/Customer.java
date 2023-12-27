@@ -19,15 +19,19 @@ public class Customer {
     @JoinColumn(name = "fk_address_id")
     private Address address;
 
+    @Column
+    private String password;
+
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName, String email, String phoneNumber, Address address) {
+    public Customer(String firstName, String lastName, String email, String phoneNumber, Address address, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.password = password;
     }
 
     public Long getId() {
@@ -72,5 +76,13 @@ public class Customer {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -9,16 +9,18 @@ public class CreateCustomerDto {
     private String email;
     private String phoneNumber;
     private Address address;
+    private String password;
 
     public CreateCustomerDto() {
     }
 
-    public CreateCustomerDto(String firstName, String lastName, String email, String phoneNumber, Address address) {
+    public CreateCustomerDto(String firstName, String lastName, String email, String phoneNumber, Address address, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -59,5 +61,13 @@ public class CreateCustomerDto {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
