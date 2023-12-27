@@ -40,4 +40,5 @@ public class ItemServiceTests {
         assertThat(itemRepository.findById(3L).get().getDescription()).isEqualTo("Stores people");
 
     }
+
 }
