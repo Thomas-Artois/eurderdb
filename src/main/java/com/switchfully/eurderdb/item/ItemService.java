@@ -22,4 +22,8 @@ public class ItemService {
                         itemMapper.mapCreateItemDtoToItem(
                                 createItemDto)));
     }
+
+    public ItemDto findItemById(Long itemId) {
+        return itemMapper.mapItemToItemDto(itemRepository.findById(itemId).get());
+    }
 }

@@ -20,7 +20,7 @@ public class Eurder {
     @OneToMany(mappedBy = "eurder", cascade = CascadeType.ALL)
     private List<ItemGroup> itemGroups;
 
-    @Column(nullable = false, name = "total_price")
+    @Column(name = "total_price")
     private double totalPrice;
 
     public Eurder() {

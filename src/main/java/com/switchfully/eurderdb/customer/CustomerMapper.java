@@ -30,4 +30,15 @@ public class CustomerMapper {
         );
     }
 
+    public Customer mapCustomerDtoToCustomer(CustomerDto customerDto) {
+        return new Customer(
+                customerDto.getFirstName(),
+                customerDto.getLastName(),
+                customerDto.getEmail(),
+                customerDto.getPhoneNumber(),
+                customerDto.getAddress(),
+                customerDto.getPassword()
+        );
+    }
+
 }
