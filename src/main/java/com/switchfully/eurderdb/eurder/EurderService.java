@@ -78,8 +78,7 @@ private final ItemGroupRepository itemGroupRepository;
 
         return new EurderDto(
                 eurder.getId(),
-                eurder.getCustomer(),
-                itemGroupList,
+                eurder.getCustomer().getId(),
                 eurder.getTotalPrice()
         );
 
