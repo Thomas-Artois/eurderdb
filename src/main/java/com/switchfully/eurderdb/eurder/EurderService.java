@@ -48,7 +48,7 @@ public class EurderService {
 //    }
 
 
-    public EurderDto saveEurder(CreateEurderDto createEurderDto, String email) {
+    public EurderDto saveEurder(CreateEurderDto createEurderDto, String email) throws ItemDoesntExistException {
         Customer customer = customerRepository.findCustomerByEmail(email).stream().findFirst().orElseThrow(CustomerDoesntExistException::new).get(0);
 
         Eurder eurder = new Eurder(customer);

@@ -1,5 +1,6 @@
 package com.switchfully.eurderdb.item;
 
+import com.switchfully.eurderdb.exceptions.ItemDoesntExistException;
 import com.switchfully.eurderdb.item.dto.CreateItemDto;
 import com.switchfully.eurderdb.item.dto.ItemDto;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class ItemService {
                                 createItemDto)));
     }
 
-    public ItemDto findItemById(Long itemId) {
-        return itemMapper.mapItemToItemDto(itemRepository.findById(itemId).get());
+    public ItemDto findItemById(Long itemId) throws ItemDoesntExistException {
+        return itemMapper.mapItemToItemDto(itemRepository.findById(itemId).orElseThrow(ItemDoesntExistException::new));
     }
 }

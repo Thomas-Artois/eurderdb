@@ -4,8 +4,8 @@ VALUES ('adminTest', 'adminPasswordTest');
 INSERT INTO address(street_name, street_number, location)
 VALUES ('TestingStreetName', 'TestingStreetNumber', 'TestingLocation');
 
-INSERT INTO customer(first_name, last_name, email, phone_number, fk_address_id)
-VALUES ('TestingFirstName', 'TestingLastName', 'TestingEmail@gmail.com', '0444444444', 1);
+INSERT INTO customer(first_name, last_name, email, phone_number, fk_address_id, password)
+VALUES ('TestingFirstName', 'TestingLastName', 'TestingEmail@gmail.com', '0444444444', 1, 'testingPassword');
 
 INSERT INTO item(name, description, price, stock_amount)
 VALUES ('TestingName', 'TestingDescription', 20.00, 9),
