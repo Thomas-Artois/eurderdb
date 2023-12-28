@@ -4,6 +4,7 @@ import com.switchfully.eurderdb.customer.domain.Customer;
 import com.switchfully.eurderdb.itemgroup.domain.ItemGroup;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,10 +27,14 @@ public class Eurder {
     public Eurder() {
     }
 
-    public Eurder(Customer customer, List<ItemGroup> itemGroups, double totalPrice) {
+    public Eurder(Customer customer, double totalPrice) {
         this.customer = customer;
-        this.itemGroups = itemGroups;
+        itemGroups = new ArrayList<>();
         this.totalPrice = totalPrice;
+    }
+
+    public Eurder(Customer customer) {
+        this.customer = customer;
     }
 
     public Long getId() {

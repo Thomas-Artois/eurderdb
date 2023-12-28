@@ -51,13 +51,10 @@ public class CustomerService {
     }
 
     public CustomerDto findCustomerByEmail(String email) throws CustomerDoesntExistException {
-        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(email);
+        Customer customer = customerRepository.findCustomerByEmail(email).stream().findFirst().orElseThrow(CustomerDoesntExistException::new).get(0);
 
-        if (customerOptional.isPresent()) {
-            return customerMapper.mapCustomerToCustomerDto(customerOptional.get());
-        } else {
-            throw new CustomerDoesntExistException();
-        }
+        return customerMapper.mapCustomerToCustomerDto(customer);
+
     }
 
 

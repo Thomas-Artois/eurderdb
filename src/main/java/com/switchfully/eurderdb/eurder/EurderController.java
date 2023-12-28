@@ -31,15 +31,8 @@ public class EurderController {
         CustomerDto customerDto = customerService.findCustomerByEmail(email);
 //        Can throw passwordincorrect
         customerService.checkIfPasswordIsCorrect(customerDto, password);
-//        Can throw itemdoesntexist
-        for (int i = 0; i < createEurderDto.getItemGroups().size(); i++) {
-            eurderService.validateEurderForValidItem(createEurderDto, i);
-        }
 
-        Long customerId = customerDto.getId();
-        List<ItemGroup> itemGroupList = createEurderDto.getItemGroups();
-
-        return eurderService.saveEurder(createEurderDto, customerDto);
+        return eurderService.saveEurder(createEurderDto, email);
     }
 
 
