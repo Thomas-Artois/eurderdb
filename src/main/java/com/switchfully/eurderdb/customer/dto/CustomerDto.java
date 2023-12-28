@@ -11,17 +11,19 @@ public class CustomerDto {
     private String email;
     private String phoneNumber;
     private Address address;
+    private String password;
 
     public CustomerDto() {
     }
 
-    public CustomerDto(Long id, String firstName, String lastName, String email, String phoneNumber, Address address) {
+    public CustomerDto(Long id, String firstName, String lastName, String email, String phoneNumber, Address address, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.password = password;
     }
 
     public Long getId() {
@@ -66,5 +68,13 @@ public class CustomerDto {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
