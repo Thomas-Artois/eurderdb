@@ -6,6 +6,7 @@ import com.switchfully.eurderdb.eurder.domain.Eurder;
 import com.switchfully.eurderdb.eurder.dto.CreateEurderDto;
 import com.switchfully.eurderdb.eurder.dto.EurderDto;
 import com.switchfully.eurderdb.exceptions.EurderDoesntExistException;
+import com.switchfully.eurderdb.exceptions.ItemDoesntExistException;
 import com.switchfully.eurderdb.itemgroup.ItemGroupRepository;
 import com.switchfully.eurderdb.itemgroup.domain.ItemGroup;
 import com.switchfully.eurderdb.itemgroup.dto.CreateItemGroupDto;
@@ -119,6 +120,22 @@ public class EurderServiceTests {
         //WHEN & THEN
         assertThrows(EurderDoesntExistException.class, () -> eurderService.findEurderById(2L));
     }
+
+    @Test
+    void whenCreateEurderWithInvalidItemId_thenThrowException() {
+        //GIVEN
+        CreateEurderDto createEurderDto = new CreateEurderDto(
+                List.of(
+                        new CreateItemGroupDto(400000L, 1),
+                        new CreateItemGroupDto(2L, 1)
+                )
+        );
+
+        //WHEN & THEN
+        assertThrows(ItemDoesntExistException.class, () -> eurderService.saveEurder(createEurderDto, "TestingEmail@gmail.com"));
+    }
+
+
 
 
 

@@ -39,7 +39,7 @@ public class ItemServiceTests {
 
         //THEN
         assertThat(itemRepository.findById(3L)).isPresent();
-        assertThat(itemRepository.findById(3L).get().getDescription()).isEqualTo("Stores people");
+        assertThat(itemRepository.findById(3L).get().getDescription()).isEqualTo("TestingDescriptionThree");
     }
 
     @Test
