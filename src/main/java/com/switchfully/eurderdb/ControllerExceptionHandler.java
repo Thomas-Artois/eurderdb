@@ -37,4 +37,9 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
     }
 
+    @ExceptionHandler(EurderDoesntExistException.class)
+    private void eurderDoesntExistException(EurderDoesntExistException e, HttpServletResponse response) throws IOException {
+        response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
+    }
+
 }
