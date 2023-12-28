@@ -7,17 +7,15 @@ import java.util.List;
 
 public class EurderDto {
     private Long id;
-    private Customer customer;
-    private List<ItemGroup> itemGroups;
+    private Long customerId;
     private double totalPrice;
 
     public EurderDto() {
     }
 
-    public EurderDto(Long id, Customer customer, List<ItemGroup> itemGroups, double totalPrice) {
+    public EurderDto(Long id, Long customerId, double totalPrice) {
         this.id = id;
-        this.customer = customer;
-        this.itemGroups = itemGroups;
+        this.customerId = customerId;
         this.totalPrice = totalPrice;
     }
 
@@ -25,20 +23,16 @@ public class EurderDto {
         return id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public List<ItemGroup> getItemGroups() {
-        return itemGroups;
-    }
-
-    public void setItemGroups(List<ItemGroup> itemGroups) {
-        this.itemGroups = itemGroups;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public double getTotalPrice() {

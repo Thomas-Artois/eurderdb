@@ -3,8 +3,10 @@ package com.switchfully.eurderdb.itemgroup.domain;
 import com.switchfully.eurderdb.eurder.domain.Eurder;
 import com.switchfully.eurderdb.item.domain.Item;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 public class ItemGroup {
@@ -29,12 +31,12 @@ public class ItemGroup {
     private double totalPrice;
 
     @Column(name = "shipping_date")
-    private Timestamp shippingDate;
+    private LocalDate shippingDate;
 
     public ItemGroup() {
     }
 
-    public ItemGroup(Eurder eurder, Item item, int amount, double totalPrice, Timestamp shippingDate) {
+public ItemGroup(Eurder eurder, Item item, int amount, double totalPrice, LocalDate shippingDate) {
         this.eurder = eurder;
         this.item = item;
         this.amount = amount;
@@ -78,11 +80,11 @@ public class ItemGroup {
         this.totalPrice = totalPrice;
     }
 
-    public Timestamp getShippingDate() {
+    public LocalDate getShippingDate() {
         return shippingDate;
     }
 
-    public void setShippingDate(Timestamp shippingDate) {
+    public void setShippingDate(LocalDate shippingDate) {
         this.shippingDate = shippingDate;
     }
 }

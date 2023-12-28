@@ -6,36 +6,21 @@ import com.switchfully.eurderdb.item.domain.Item;
 import java.sql.Timestamp;
 
 public class CreateItemGroupDto {
-    private Eurder eurder;
-    private Item item;
+
+    private Long itemId;
     private int amount;
-    private double totalPrice;
-    private Timestamp shippingDate;
 
-    public CreateItemGroupDto() {
-    }
-
-    public CreateItemGroupDto(Eurder eurder, Item item, int amount, double totalPrice, Timestamp shippingDate) {
-        this.eurder = eurder;
-        this.item = item;
+    public CreateItemGroupDto(Long itemId, int amount) {
+        this.itemId = itemId;
         this.amount = amount;
-        this.totalPrice = totalPrice;
-        this.shippingDate = shippingDate;
-    }
-    public Eurder getEurder() {
-        return eurder;
     }
 
-    public void setEurder(Eurder eurder) {
-        this.eurder = eurder;
+    public Long getItemId() {
+        return itemId;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
     public int getAmount() {
@@ -44,21 +29,5 @@ public class CreateItemGroupDto {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public Timestamp getShippingDate() {
-        return shippingDate;
-    }
-
-    public void setShippingDate(Timestamp shippingDate) {
-        this.shippingDate = shippingDate;
     }
 }
