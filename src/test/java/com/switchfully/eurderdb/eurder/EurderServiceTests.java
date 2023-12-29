@@ -135,32 +135,28 @@ public class EurderServiceTests {
         assertThrows(ItemDoesntExistException.class, () -> eurderService.saveEurder(createEurderDto, "TestingEmail@gmail.com"));
     }
 
+    @Test
+    void whenMappingEurderToEurderDto_thenEurderDtoHasAllTheSameFields() {
+        Eurder eurder = new Eurder(
+                new Customer(
+                        "voornaam",
+                        "achternaam",
+                        "voornaamachternaam@gmail.com",
+                        "0454667788",
+                        new Address(
+                                "straatnaam",
+                                "nummer",
+                                "locatie"
+                        ),
+                        "wachtwoord"
+                )
+        );
 
+        //WHEN
+        EurderDto eurderDto = eurderMapper.mapEurderToEurderDto(eurder);
 
-
-
-
-
-//    @Test
-//    void whenMappingEurderToEurderDto_thenEurderDtoHasAllTheSameFields() {
-//        Eurder eurder = new Eurder(
-//                new Customer(
-//                        "voornaam",
-//                        "achternaam",
-//                        "voornaamachternaam@gmail.com",
-//                        "0454667788",
-//                        new Address(
-//                                "straatnaam",
-//                                "nummer",
-//                                "locatie"
-//                        ),
-//                        "wachtwoord"
-//                )
-//        );
-//
-//        //WHEN
-//        EurderDto eurderDto = eurderMapper.mapEurderToEurderDto(eurder);
-//    }
+        assertThat(eurderDto.getTotalPrice()).isEqualTo(eurder.getTotalPrice());
+    }
 
 
 
