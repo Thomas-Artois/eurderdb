@@ -18,7 +18,7 @@ public class Eurder {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "eurder", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "eurder", cascade = CascadeType.ALL)
     private List<ItemGroup> itemGroups;
 
     @Column(name = "total_price")
@@ -30,6 +30,13 @@ public class Eurder {
     public Eurder(Customer customer, double totalPrice) {
         this.customer = customer;
         itemGroups = new ArrayList<>();
+        this.totalPrice = totalPrice;
+    }
+
+    public Eurder(Long id, Customer customer, List<ItemGroup> itemGroups, double totalPrice) {
+        this.id = id;
+        this.customer = customer;
+        this.itemGroups = itemGroups;
         this.totalPrice = totalPrice;
     }
 

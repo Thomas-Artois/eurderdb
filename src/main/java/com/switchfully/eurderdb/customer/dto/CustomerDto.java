@@ -3,6 +3,8 @@ package com.switchfully.eurderdb.customer.dto;
 import com.switchfully.eurderdb.customer.domain.Address;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 public class CustomerDto {
 
     private Long id;
@@ -76,5 +78,18 @@ public class CustomerDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerDto that = (CustomerDto) o;
+        return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address) && Objects.equals(password, that.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email, phoneNumber, address, password);
     }
 }
