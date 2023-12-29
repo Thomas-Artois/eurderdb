@@ -10,6 +10,9 @@ public class CreateItemGroupDto {
     private Long itemId;
     private int amount;
 
+    public CreateItemGroupDto() {
+    }
+
     public CreateItemGroupDto(Long itemId, int amount) {
         this.itemId = itemId;
         this.amount = amount;

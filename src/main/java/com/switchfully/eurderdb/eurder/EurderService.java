@@ -1,15 +1,14 @@
 package com.switchfully.eurderdb.eurder;
 
-import com.switchfully.eurderdb.customer.CustomerMapper;
 import com.switchfully.eurderdb.customer.CustomerRepository;
 import com.switchfully.eurderdb.customer.domain.Customer;
 import com.switchfully.eurderdb.eurder.domain.Eurder;
 import com.switchfully.eurderdb.eurder.dto.CreateEurderDto;
 import com.switchfully.eurderdb.eurder.dto.EurderDto;
 import com.switchfully.eurderdb.exceptions.CustomerDoesntExistException;
+import com.switchfully.eurderdb.exceptions.EurderDoesntExistException;
 import com.switchfully.eurderdb.exceptions.ItemDoesntExistException;
 import com.switchfully.eurderdb.item.ItemRepository;
-import com.switchfully.eurderdb.item.ItemService;
 import com.switchfully.eurderdb.item.domain.Item;
 import com.switchfully.eurderdb.itemgroup.ItemGroupRepository;
 import com.switchfully.eurderdb.itemgroup.domain.ItemGroup;
@@ -27,14 +26,16 @@ public class EurderService {
 
     private final EurderRepository eurderRepository;
     private final ItemRepository itemRepository;
-private final ItemGroupRepository itemGroupRepository;
+    private final ItemGroupRepository itemGroupRepository;
     private final CustomerRepository customerRepository;
+    private final EurderMapper eurderMapper;
 
-    public EurderService(EurderRepository eurderRepository, ItemRepository itemRepository, ItemGroupRepository itemGroupRepository, CustomerRepository customerRepository) {
+    public EurderService(EurderRepository eurderRepository, ItemRepository itemRepository, ItemGroupRepository itemGroupRepository, CustomerRepository customerRepository, EurderMapper eurderMapper) {
         this.eurderRepository = eurderRepository;
         this.itemRepository = itemRepository;
         this.itemGroupRepository = itemGroupRepository;
         this.customerRepository = customerRepository;
+        this.eurderMapper = eurderMapper;
     }
 
 //    public void validateEurderForValidItem(CreateEurderDto createEurderDto, int index) throws ItemDoesntExistException {
@@ -47,13 +48,13 @@ private final ItemGroupRepository itemGroupRepository;
 //    }
 
 
-    public EurderDto saveEurder(CreateEurderDto createEurderDto, String email) {
+    public EurderDto saveEurder(CreateEurderDto createEurderDto, String email) throws ItemDoesntExistException {
         Customer customer = customerRepository.findCustomerByEmail(email).stream().findFirst().orElseThrow(CustomerDoesntExistException::new).get(0);
 
         Eurder eurder = new Eurder(customer);
         eurderRepository.save(eurder);
 
-        List<ItemGroup> itemGroupList= new ArrayList<>();
+        List<ItemGroup> itemGroupList = new ArrayList<>();
         double totalPrice = 0;
 
         for (CreateItemGroupDto itemGroupDto : createEurderDto.getCreateItemGroupDtoList()) {
@@ -93,4 +94,10 @@ private final ItemGroupRepository itemGroupRepository;
         }
 
     }
+
+    public EurderDto findEurderById(Long eurderId) throws EurderDoesntExistException {
+        return eurderMapper.mapEurderToEurderDto(eurderRepository.findEurderById(eurderId).orElseThrow(EurderDoesntExistException::new));
+    }
+
+
 }

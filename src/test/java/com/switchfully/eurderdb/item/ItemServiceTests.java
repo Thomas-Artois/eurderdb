@@ -1,5 +1,6 @@
 package com.switchfully.eurderdb.item;
 
+import com.switchfully.eurderdb.exceptions.ItemDoesntExistException;
 import com.switchfully.eurderdb.item.domain.Item;
 import com.switchfully.eurderdb.item.dto.CreateItemDto;
 import org.checkerframework.checker.units.qual.C;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
@@ -37,8 +39,13 @@ public class ItemServiceTests {
 
         //THEN
         assertThat(itemRepository.findById(3L)).isPresent();
-        assertThat(itemRepository.findById(3L).get().getDescription()).isEqualTo("Stores people");
+        assertThat(itemRepository.findById(3L).get().getDescription()).isEqualTo("TestingDescriptionThree");
+    }
 
+    @Test
+    void whenFindItemByInvalidId_thenExceptionIsThrown() {
+        //WHEN & THEN
+        assertThrows(ItemDoesntExistException.class, () -> itemService.findItemById(80000L));
     }
 
 }
