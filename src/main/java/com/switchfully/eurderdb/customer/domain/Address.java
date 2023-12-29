@@ -3,6 +3,8 @@ package com.switchfully.eurderdb.customer.domain;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
+import java.util.Objects;
+
 @Entity
 public class Address {
     @Id
@@ -54,5 +56,18 @@ public class Address {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(streetName, address.streetName) && Objects.equals(streetNumber, address.streetNumber) && Objects.equals(location, address.location);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(streetName, streetNumber, location);
     }
 }

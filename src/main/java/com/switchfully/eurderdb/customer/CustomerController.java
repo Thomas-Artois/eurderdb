@@ -34,7 +34,7 @@ public class CustomerController {
         return customerService.findAllCustomers();
     }
 
-    @GetMapping(path = "{id}", produces = "application/json")
+    @GetMapping(path = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public CustomerDto getCustomerById(@RequestHeader String username, @RequestHeader String password, @PathVariable Long id) {
         adminService.findAdminByUsername(username);

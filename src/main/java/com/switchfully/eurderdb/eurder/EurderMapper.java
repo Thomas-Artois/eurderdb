@@ -14,6 +14,14 @@ public class EurderMapper {
                 eurder.getItemGroups(),
                 eurder.getTotalPrice()
         );
+    }
 
+    public Eurder mapEurderDtoToEurder(EurderDto eurderDto) {
+        return new Eurder(
+                eurderDto.getId(),
+                eurderDto.getCustomer(),
+                eurderDto.getItemGroups(),
+                eurderDto.getTotalPrice()
+        );
     }
 }
