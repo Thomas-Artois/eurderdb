@@ -55,6 +55,11 @@ public class EurderControllerIntegrationTests {
         assertThat(eurderDto.getTotalPrice()).isEqualTo(62.42);
     }
 
+    @Test
+    void whenSaveEurder_thenEurderIsSavedInDatabase() {
+
+    }
+
 
 
 }
