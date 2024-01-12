@@ -6,8 +6,11 @@ import com.switchfully.eurderdb.item.dto.ItemDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/item")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ItemController {
 
     private final ItemService itemService;
@@ -25,5 +28,17 @@ public class ItemController {
         adminService.checkIfAdminPasswordIsCorrect(username, password);
 
         return itemService.saveItem(createItemDto);
+    }
+
+    @GetMapping(produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ItemDto> getAllItems() {
+        return itemService.findAllItems();
+    }
+
+    @GetMapping(path = "/{id}", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public ItemDto getItemById(@PathVariable Long id) {
+        return itemService.findItemById(id);
     }
 }

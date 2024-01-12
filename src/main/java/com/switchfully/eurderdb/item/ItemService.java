@@ -6,6 +6,9 @@ import com.switchfully.eurderdb.item.dto.ItemDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 public class ItemService {
@@ -26,5 +29,9 @@ public class ItemService {
 
     public ItemDto findItemById(Long itemId) throws ItemDoesntExistException {
         return itemMapper.mapItemToItemDto(itemRepository.findById(itemId).orElseThrow(ItemDoesntExistException::new));
+    }
+
+    public List<ItemDto> findAllItems() {
+        return itemRepository.findAll().stream().map(itemMapper::mapItemToItemDto).collect(Collectors.toList());
     }
 }
